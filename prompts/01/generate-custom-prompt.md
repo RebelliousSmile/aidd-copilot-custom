@@ -72,4 +72,8 @@ argument-hint: <hint> (omit if no argument)
 4. Draft the prompt following the output format
 5. Show the draft to the user and **wait for approval**
 6. Write the file to `prompts/<phase>/<slug>.md` — do NOT move it to the submodule automatically
-7. Remind the user to move it to `aidd-copilot-custom/prompts/<phase>/` and push
+7. If the prompt was ported from a Claude command, compare it against the original:
+   - List each behavioral difference (syntax, argument passing, agent references, shell commands)
+   - Rate confidence **out of 10** that the Copilot prompt produces the same behavior
+   - Justify each point that lowered the score
+8. Remind the user to move it to `aidd-copilot-custom/prompts/<phase>/` and push
