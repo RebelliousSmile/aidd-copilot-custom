@@ -1,46 +1,34 @@
 ---
-description: Finalize a development task — validate, commit, review and open a draft PR
+description: Archive the plan as processed, return to parent branch and clean up
 ---
 
 # End Plan
 
 ## Goal
 
-Complete the current plan: run validation, commit changes following project conventions, open a draft PR, then clean up the local branch.
-
-## Context
-
-### Commit conventions
-
-```markdown
-@aidd_docs/templates/vcs/commit.md
-@aidd_docs/memory/vcs.md
-```
-
-### PR template
-
-```markdown
-@aidd_docs/templates/vcs/pull_request.md
-```
+After a PR/MR has been created on a plan branch, archive the plan file and cleanly return to the parent branch.
 
 ## Rules
 
-- Keep commits atomic — split by concern if needed
-- Never `--force` push
-- Detect base branch from git history, do NOT assume `main` or `master`
-- Ask for confirmation before committing and before creating the PR
-- Open PR as **draft**
+- Never force-delete a branch with uncommitted changes
+- Never push anything
+- Always pull after checkout
+- Confirm branch deletion with user before executing
 
 ## Steps
 
-1. Run the project test suite — stop and report if failures
-2. Check staged and unstaged changes (`git status`, `git diff`)
-3. Propose commit split if changes cover multiple concerns — **wait for approval**
-4. Commit each part with a message following project conventions
-5. Push branch to remote (`git push --force-with-lease`)
-6. Detect base branch from recent git history
-7. Fill the PR template with current branch changes
-8. Show PR title + body — **wait for approval**
-9. Create draft PR using `gh pr create --draft`
-10. Print PR URL and summary
-11. Delete local branch (`git branch -D <branch>`)
+1. Get current task branch name: `git branch --show-current`
+2. Detect parent branch:
+   - `git log --oneline --decorate HEAD` to find branch point
+   - Fallback: ask user to confirm parent branch name
+3. Confirm: display task branch → parent branch, **wait for user validation**
+4. Find the plan file: search `aidd_docs/tasks/` for a `.md` file (not `.processed.md`, not `.review.md`) whose content contains `**Branch name**: <current-branch>`
+   - If not found: ask user to identify the plan file
+5. Rename plan file from `<name>.md` to `<name>.processed.md`
+6. Ask user: run a learning capture step? (optional)
+7. Checkout parent: `git checkout <parent>`
+8. Pull: `git pull`
+9. Ask user: delete plan branch? (local only / local + remote / keep)
+   - Local: `git branch -D <plan-branch>`
+   - Remote: `git push origin --delete <plan-branch>`
+10. Report final state: current branch, last commit, renamed plan file, deleted branches
