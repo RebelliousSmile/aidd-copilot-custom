@@ -80,8 +80,8 @@ Scan `docs/` and `documentation/` folders, classify each file by content type, r
 
 ## Steps
 
-1. Pre-flight: verify source folders and `aidd_docs/` exist:
-   `! ls docs/ 2>/dev/null; ls documentation/ 2>/dev/null; ls aidd_docs/ 2>/dev/null`
+1. Pre-flight: verify source folders and `aidd_docs/` exist by running:
+   `ls docs/ 2>/dev/null; ls documentation/ 2>/dev/null; ls aidd_docs/ 2>/dev/null`
    If no source folder exists, stop and inform user. If `aidd_docs/` missing, ask user to run `/init` first.
 2. Recursively list all files from both folders, deduplicate, display count to user.
 3. Spawn one sub-agent per file to classify using the Classification Map. Collect results and display plan:
