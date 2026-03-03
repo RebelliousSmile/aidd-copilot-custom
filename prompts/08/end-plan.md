@@ -25,7 +25,7 @@ After a PR/MR has been created on a plan branch, archive the plan file and clean
 4. Find the plan file: search `aidd_docs/tasks/` for a `.md` file (not `.processed.md`, not `.review.md`) whose content contains `**Branch name**: <current-branch>`
    - If not found: ask user to identify the plan file
 5. Rename plan file from `<name>.md` to `<name>.processed.md`
-6. Ask user: run a learning capture step? (optional)
+6. Ask user: capture learnings from this plan? If yes, follow `@.github/prompts/07_documentation/learn.prompt.md`
 7. Checkout parent: `git checkout <parent>`
 8. Pull: `git pull`
 9. Ask user: delete plan branch? (local only / local + remote / keep)
