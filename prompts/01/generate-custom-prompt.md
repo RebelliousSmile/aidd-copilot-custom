@@ -14,7 +14,7 @@ Generate a new prompt file for `aidd-copilot-custom` in the correct Copilot CLI 
 ### Format reference — existing prompt example
 
 ```markdown
-@.github/copilot-custom/prompts/08/changelog.md
+@.github/custom/prompts/08/changelog.md
 ```
 
 ### SDLC Phase Taxonomy
@@ -68,7 +68,7 @@ argument-hint: <hint> (omit if no argument)
 
 1. Analyze the description provided in the prompt — extract goal, context, constraints
 2. Determine the best SDLC phase using the taxonomy above
-3. Check if a similar prompt already exists in `@.github/copilot-custom/prompts/`
+3. Check if a similar prompt already exists in `@.github/custom/prompts/`
 4. Draft the prompt following the output format
 5. Show the draft to the user and **wait for approval**
 6. Write the file to `prompts/<phase>/<slug>.md` — do NOT move it to the submodule automatically
@@ -76,4 +76,4 @@ argument-hint: <hint> (omit if no argument)
    - List each behavioral difference (syntax, argument passing, agent references, shell commands)
    - Rate confidence **out of 10** that the Copilot prompt produces the same behavior
    - Justify each point that lowered the score
-8. Remind the user to move it to `aidd-copilot-custom/prompts/<phase>/` and push
+8. Remind the user to move it to `.github/custom/prompts/<phase>/` and push to `aidd-copilot-custom`

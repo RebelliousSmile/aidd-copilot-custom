@@ -12,55 +12,51 @@ Collection de prompts personnalisés pour [GitHub Copilot CLI](https://docs.gith
 | `prompts/02/release-to-site.md` | Récupère une release GitHub et traduit les changements notables en contenu marketing sur le site |
 | `prompts/03/site-section.md` | Planifie et implémente une section sur le site marketing (Nuxt + Vue + UnoCSS) |
 | `prompts/08/changelog.md` | Génère ou met à jour `CHANGELOG.md` à partir de l'historique git, puis commit et tag la release |
+| `prompts/08/end-plan.md` | Archive le plan comme traité, retourne sur la branche parente et nettoie |
 
 ## Installation
 
-Cloner ce dépôt dans `.github/copilot-custom/` de votre projet :
+Copier le contenu de ce dépôt dans `.github/custom/` de votre projet :
 
 ```bash
-git clone <repo-url> .github/copilot-custom
+git clone <repo-url> .github/custom
 ```
 
-Ou ajouter comme sous-module git (recommandé) :
+La structure dans votre projet sera :
 
-```bash
-git submodule add <repo-url> .github/copilot-custom
+```
+.github/
+  custom/
+    prompts/
+      01/
+      02/
+      03/
+      08/
+    agents/        ← vos agents custom
+    instructions/  ← vos instructions custom
+    skills/        ← vos skills custom
 ```
 
 ## Usage
 
-Dans GitHub Copilot CLI, référencer le prompt avec `@` puis décrire ce que tu veux :
+Dans GitHub Copilot CLI, référencer le prompt avec `@` :
 
 ```
-@.github/copilot-custom/prompts/08/changelog.md v1.2.0
+@.github/custom/prompts/08/changelog.md v1.2.0
 ```
 
 ```
-@.github/copilot-custom/prompts/01/migrate-docs.md
+@.github/custom/prompts/01/migrate-docs.md
 ```
-
-L'argument (version, description, etc.) se passe directement dans le message textuel après la référence.
 
 ## Ajouts projet-spécifiques
 
-Pour ajouter des prompts propres à un projet sans toucher au submodule, créer un dossier séparé dans le projet :
-
-```
-.github/
-  copilot-custom/        ← submodule (ce repo, ne pas modifier)
-  prompts/               ← prompts spécifiques au projet (dans le git du projet)
-    my-custom-prompt.md
-```
-
-Usage :
-```
-@.github/prompts/my-custom-prompt.md
-```
+Ajouter vos propres prompts directement dans `.github/custom/prompts/` aux côtés des prompts de ce repo.
 
 ## Mise à jour du framework
 
 ```bash
-git submodule update --remote .github/copilot-custom
+git -C .github/custom pull
 ```
 
 ## Prérequis
