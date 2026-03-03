@@ -2,11 +2,11 @@
 description: Finalize a development task — validate, commit, review and open a draft PR
 ---
 
-# Finish Task
+# End Plan
 
 ## Goal
 
-Complete the current development task: run validation, commit changes following project conventions, then open a draft PR.
+Complete the current plan: run validation, commit changes following project conventions, open a draft PR, then clean up the local branch.
 
 ## Context
 
@@ -43,3 +43,4 @@ Complete the current development task: run validation, commit changes following 
 8. Show PR title + body — **wait for approval**
 9. Create draft PR using `gh pr create --draft`
 10. Print PR URL and summary
+11. Delete local branch (`git branch -D <branch>`)
